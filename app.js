@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv').config()
 // const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const authenticateToken = require('./middleware/auth');
@@ -13,7 +14,7 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://om:omiii@atlascluster.zo09joq.mongodb.net/AndroidServer?retryWrites=true&w=majority').then(() => {
+mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log('Connected to MongoDB');
 });
 
